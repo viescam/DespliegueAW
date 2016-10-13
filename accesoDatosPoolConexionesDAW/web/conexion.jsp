@@ -4,22 +4,33 @@
     Author     : alumno
 --%>
 
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.sql.DataSource"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
     <body>
-        <%
+        <%  
+            InitialContext initCtx=new InitialContext();;
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            DataSource dataSource = (DataSource)envCtx.lookup("jdbc/spacex");
+            
             String nombre=""; 
             int id=0;
+            Connection con=null;
             try{
-                Connection con;
+                con=dataSource.getConnection(); 
+                //Usar la conexión
+ 
+                
 
                 PreparedStatement st;
 
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                /*Class.forName("com.mysql.jdbc.Driver").newInstance();
                 String urlBBDD = "jdbc:mysql://localhost:3306/spacex";
-                con = (java.sql.DriverManager.getConnection(urlBBDD,"root","root"));
+                con = dataSource.getConnection(urlBBDD,"root","root");*/
 
 
                 st=con.prepareStatement("SELECT * FROM cohetes");
@@ -31,6 +42,9 @@
                 }
             catch(SQLException e){
                 //throw new RuntimeException(e);
+            }
+            finally{
+                con.close();
             }
         %>
         <%=id%>
