@@ -13,26 +13,17 @@
 <html>
     <body>
         <%  
-            InitialContext initCtx=new InitialContext();;
-            Context envCtx = (Context) initCtx.lookup("java:comp/env");
-            DataSource dataSource = (DataSource)envCtx.lookup("jdbc/spacex");
-            
             String nombre=""; 
             int id=0;
             Connection con=null;
             try{
-                con=dataSource.getConnection(); 
-                //Usar la conexión
- 
+                InitialContext initCtx=new InitialContext();;
+                Context envCtx = (Context) initCtx.lookup("java:comp/env");
+                DataSource dataSource = (DataSource)envCtx.lookup("jdbc/spacex");
                 
-
+                con=dataSource.getConnection(); 
+                
                 PreparedStatement st;
-
-                /*Class.forName("com.mysql.jdbc.Driver").newInstance();
-                String urlBBDD = "jdbc:mysql://localhost:3306/spacex";
-                con = dataSource.getConnection(urlBBDD,"root","root");*/
-
-
                 st=con.prepareStatement("SELECT * FROM cohetes");
                 ResultSet rs = st.executeQuery();
                 rs.next();
