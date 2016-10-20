@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/accesoDatosPoolConexionesDAW_MaqVirt">
+  <Resource
+      type="javax.sql.DataSource" 
+      auth="Container"
+      name="jdbc/spacex" 
+      driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql://localhost:3306/spacex"
+      username="root"
+      password="root"
+         
+      maxIdle="30" 
+      maxTotal="100" 
+      maxWaitMillis="10000" 
+      validationQuery="SELECT 1 FROM dual"/>
+</Context>
