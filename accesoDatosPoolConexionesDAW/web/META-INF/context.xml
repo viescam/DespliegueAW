@@ -7,11 +7,11 @@
     driverClassName="com.mysql.jdbc.Driver"
     url="jdbc:mysql://localhost:3306/spacex"
     username="root"
-    password="root"
+    password="admin"
     
-    maxActive="100"
+    maxTotal="100"
     maxIdle="30"
-    maxWait="10000"
+    maxWaitMillis="10000"
     validationQuery="SELECT 1 FROM dual"
     />
 </Context>
